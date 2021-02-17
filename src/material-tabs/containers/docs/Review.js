@@ -38,14 +38,14 @@ export default function Review() {
         className={classes.margin}
         size="small"
       >
-        <ThumbUpIcon fontSize="medium" />
+        <ThumbUpIcon fontSize="default" />
       </IconButton>
       <IconButton
         aria-label="dont-like"
         className={classes.margin}
         size="small"
       >
-        <ThumbDownIcon fontSize="medium" />
+        <ThumbDownIcon fontSize="default" />
       </IconButton>
       {/* </div> */}
     </div>

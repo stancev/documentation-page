@@ -17,6 +17,7 @@ import MailIcon from "@material-ui/icons/Mail";
 
 import Review from "./Review";
 import Lists from "./Lists";
+import NestedLists from "./TestList";
 
 const drawerWidth = 240;
 
@@ -39,7 +40,26 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerContainer: {
     overflow: "auto",
-    color: "#fff",
+    //color: "#fff",
+    "&::-webkit-scrollbar": {
+      width: "3px",
+    },
+    "&::-webkit-scrollbar-track": {
+      background: "rgb(145, 155, 174)" /* color of the tracking area */,
+      //background: "#e8eaed" /* color of the tracking area */,
+
+      //backgroundColor: "transparent",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      // backgroundColor: "rgb(145, 155, 174" /* color of the scroll thumb */,
+      // borderRadius: "20px" /* roundness of the scroll thumb */,
+      // border: "3px solid slategrey" /* creates padding around scroll thumb */,
+
+      backgroundColor: "#d6dee1",
+      borderRadius: "20px",
+      border: "6px solid transparent",
+      backgroundClip: "content-box",
+    },
   },
   content: {
     flexGrow: 1,
@@ -71,7 +91,8 @@ export default function ClippedDrawer() {
           <Toolbar />
           <Toolbar />
           <div className={classes.drawerContainer}>
-            <Lists />
+            {/* <Lists /> */}
+            <NestedLists />
           </div>
         </Drawer>
       </Hidden>

@@ -53,6 +53,7 @@ export default function NestedList() {
           disablePadding
           subheader={
             <ListSubheader
+              disableSticky
               style={{
                 color: "#fff",
                 lineHeight: "30px",
@@ -86,6 +87,7 @@ export default function NestedList() {
           disablePadding
           subheader={
             <ListSubheader
+              disableSticky
               style={{
                 color: "#fff",
                 lineHeight: "30px",
@@ -167,6 +169,54 @@ export default function NestedList() {
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={false} timeout="auto" unmountOnExit>
+        <List
+          dense
+          component="div"
+          disablePadding
+          subheader={
+            <ListSubheader
+              style={{ color: "#fff", lineHeight: "30px", fontSize: "11px" }}
+              component="div"
+              id="nested-list-subheader"
+            >
+              KARAKTERISTIKE POSTPAID SISTEMA NAPLATE
+            </ListSubheader>
+          }
+        >
+          <ListItem button className={classes.nested}>
+            <ListItemText primary="Uvod u postpaid za pravna lica" />
+          </ListItem>
+        </List>
+      </Collapse>
+      <ListItem button onClick={handleClick}>
+        <ListItemText primary="Napredna mobilna i fiksna resenja" />
+        {open ? <ExpandLess /> : <ExpandMore />}
+      </ListItem>
+      <Collapse in={open} timeout="auto" unmountOnExit>
+        <List
+          dense
+          component="div"
+          disablePadding
+          subheader={
+            <ListSubheader
+              style={{ color: "#fff", lineHeight: "30px", fontSize: "11px" }}
+              component="div"
+              id="nested-list-subheader"
+            >
+              KARAKTERISTIKE POSTPAID SISTEMA NAPLATE
+            </ListSubheader>
+          }
+        >
+          <ListItem button className={classes.nested}>
+            <ListItemText primary="Uvod u postpaid za pravna lica" />
+          </ListItem>
+        </List>
+      </Collapse>
+      <ListItem button onClick={handleClick}>
+        <ListItemText primary="Napredna mobilna i fiksna resenja" />
+        {open ? <ExpandLess /> : <ExpandMore />}
+      </ListItem>
+      <Collapse in={open} timeout="auto" unmountOnExit>
         <List
           dense
           component="div"

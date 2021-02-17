@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 //import SwipeableViews from "react-swipeable-views";
@@ -9,6 +10,8 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Toolbar from "@material-ui/core/Toolbar";
+
+import { arrayToTree } from "../helpers/arrayToTree";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -83,7 +86,22 @@ const useStyles = makeStyles((theme) => ({
 export default function FullWidthTabs() {
   const classes = useStyles();
   const theme = useTheme();
-  const [value, setValue] = React.useState();
+  const [value, setValue] = React.useState(0);
+
+  const [categories, setCategories] = useState([]);
+  console.log(categories);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const results = await axios(
+        "http://localhost:1337/categories/navigation"
+      );
+      let tree = arrayToTree(results.data);
+      //setCategories(tree[0]);
+      setCategories(tree[0].children);
+    };
+    fetchData();
+  }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -92,6 +110,10 @@ export default function FullWidthTabs() {
   const handleChangeIndex = (index) => {
     setValue(index);
   };
+
+  const tab = categories.map((tab, i) => (
+    <Tab component={Link} to="/docs" label={tab.title} {...a11yProps(i)} />
+  ));
 
   return (
     <div className={classes.root}>
@@ -105,7 +127,16 @@ export default function FullWidthTabs() {
           centered
           aria-label="full width tabs example"
         >
-          <Tab component={Link} to="/docs" label="Postpaid" {...a11yProps(0)} />
+          {/* {categories.forEach((tab, i) => (
+            <Tab
+              component={Link}
+              to="/docs"
+              label={tab.title}
+              {...a11yProps(i)}
+            />
+          ))} */}
+          {tab}
+          {/* <Tab component={Link} to="/docs" label="Postpaid" {...a11yProps(0)} />
           <Tab component={Link} to="/docs" label="Pripaid" {...a11yProps(1)} />
           <Tab component={Link} to="/docs" label="Layout" {...a11yProps(2)} />
           <Tab component={Link} to="/docs" label="Uređaji" {...a11yProps(3)} />
@@ -114,7 +145,7 @@ export default function FullWidthTabs() {
             to="/docs"
             label="Mobi Banka"
             {...a11yProps(4)}
-          />
+          /> */}
         </Tabs>
       </AppBar>
 
